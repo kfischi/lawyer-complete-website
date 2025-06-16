@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ניהול האתר - עו"ד ליאור קלואי ארז</title>
+  
+  <!-- Netlify CMS -->
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  
+  <!-- עיצוב בעברית -->
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+      text-align: right;
+    }
+    
+    /* Loading screen */
+    .cms-loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      z-index: 9999;
+    }
+    
+    .cms-loading h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    
+    .cms-loading p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255,255,255,0.3);
+      border-top: 5px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="cms-loading" id="loading">
+    <h1>⚖️ פאנל ניהול</h1>
+    <p>עו"ד ליאור קלואי ארז</p>
+    <div class="spinner"></div>
+    <p style="margin-top: 1rem;">טוען את מערכת הניהול...</p>
+  </div>
+
+  <script>
+    // הסתר loading screen כשה-CMS נטען
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loading').style.display = 'none';
+      }, 2000);
+    });
+
+    // תמיכה בעברית
+    if (typeof CMS !== 'undefined') {
+      CMS.registerLocale('he', {
+        auth: {
+          login: 'התחבר',
+          loggingIn: 'מתחבר...',
+          loginWithNetlifyIdentity: 'התחבר עם Netlify',
+          errors: {
+            email: 'הכנס אימייל תקין',
+            password: 'הכנס סיסמה',
+            identitySettings: 'לא ניתן לגשת להגדרות זהות'
+          }
+        },
+        app: {
+          header: {
+            content: 'תוכן',
+            workflow: 'זרימת עבודה',
+            media: 'מדיה',
+            quickAdd: 'הוספה מהירה'
+          }
+        },
+        collection: {
+          sidebar: {
+            collections: 'אוספים',
+            searchAll: 'חפש הכל'
+          },
+          collectionTop: {
+            viewAs: 'הצג כ',
+            newButton: 'חדש %{collectionLabel}'
+          }
+        },
+        editor: {
+          editorControl: {
+            field: {
+              optional: 'אופציונלי'
+            }
+          },
+          editorControlPane: {
+            widget: {
+              required: 'שדה %{fieldLabel} נדרש',
+              regexPattern: 'שדה %{fieldLabel} לא תואם לתבנית: %{pattern}',
+              processing: 'מעבד...',
+              range: 'שדה %{fieldLabel} חייב להיות בין %{minValue} ל %{maxValue}',
+              min: 'שדה %{fieldLabel} חייב להיות לפחות %{minValue}',
+              max: 'שדה %{fieldLabel} חייב להיות %{maxValue} או פחות'
+            }
+          },
+          toolbar: {
+            publish: 'פרסם',
+            published: 'פורסם',
+            unpublish: 'בטל פרסום',
+            duplicate: 'שכפל',
+            unpublished: 'לא פורסם',
+            publishAndCreateNew: 'פרסם וצור חדש',
+            deleteEntry: 'מחק רשומה',
+            saving: 'שומר...',
+            save: 'שמור',
+            deleting: 'מוחק...',
+            updating: 'מעדכן...',
+            setStatus: 'קבע סטטוס',
+            backCollection: 'כתיבה באוסף %{collectionLabel}',
+            unsavedChanges: 'שינויים לא שמורים',
+            changesSaved: 'שינויים נשמרו',
+            draft: 'טיוטה',
+            inReview: 'בבדיקה',
+            ready: 'מוכן'
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
